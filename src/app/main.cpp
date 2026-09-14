@@ -86,12 +86,28 @@ public:
         for(auto& s: seats) if(s.number()==n) return &s;
         return nullptr;
     }
-    void displaySeats() const {
-        cout << "\n--- Seat Layout ---\n";
-        for(const auto& s: seats)
-            cout << setw(3) << s.number() << ":" << (s.available()?"AVAILABLE":"BOOKED") << "  ";
-        cout << "\nSilver 1-4 | Gold 5-8 | Platinum 9-12\n";
+  void displaySeats() const {
+
+    cout << "\n================ SEAT LAYOUT ================\n";
+    cout << "                  SCREEN\n";
+    cout << "        --------------------------\n\n";
+
+    for(int i = 0; i < seats.size(); i++) {
+
+        if(i % 4 == 0)
+            cout << "Row " << (i / 4 + 1) << "    ";
+
+        cout << "[" << seats[i].number() << " "
+             << (seats[i].available() ? "A" : "X") << "]   ";
+
+        if(i % 4 == 3)
+            cout << "\n\n";
     }
+
+    cout << "==============================================\n";
+    cout << "A = Available    X = Booked\n";
+    cout << "Silver: 1-4 | Gold: 5-8 | Platinum: 9-12\n";
+}
 };
 
 class Cinema {
@@ -257,8 +273,8 @@ int main() {
     cinema.addScreen(2);
 
     vector<Movie> movies{
-        Movie("Interstellar","English",169),
-        Movie("Inception","English",148)
+        Movie("Hanuman Ansh","Hindi",159),
+        Movie("Godfather part 2","English",218)
     };
 
     vector<Show> shows{
